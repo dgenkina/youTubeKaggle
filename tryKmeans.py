@@ -11,11 +11,11 @@ from sklearn.cluster import KMeans
 import time
 from scipy import sparse
 
-featureFile = np.load('featureMatrixSmall.npz')
+featureFile = np.load('featureMatrix.npz')
 X = featureFile['X']
 wordlist = featureFile['wordlist']
 
-K = 8
+K = 5
 t1 = time.clock()
 kmeans = KMeans(n_clusters=K,n_init = 100).fit(X)
 t2 = time.clock()
@@ -41,5 +41,6 @@ print kmeans.labels_
 print kmeans.n_iter_
 print kmeans.inertia_
 
-df = pd.read_csv('data2.csv')
-#df['Label'] = kmeans.labels_
+df = pd.read_csv('dataEng.csv')
+df['Kmeans_label'] = kmeans.labels_
+df.to_csv('dataEngKmeans.csv')

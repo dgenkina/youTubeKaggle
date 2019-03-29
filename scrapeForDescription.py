@@ -48,4 +48,5 @@ print np.sum(badInd)/np.float(len(about_list))
         
 df['About'] = about_list #[indL:indH]
 df_clean = df[:][np.logical_not(badInd)]
+df_clean = df_clean[:][np.logical_not(pd.isnull(df_clean['About']))]
 df_clean.to_csv('data2.csv')
